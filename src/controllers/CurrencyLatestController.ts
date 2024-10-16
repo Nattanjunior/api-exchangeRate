@@ -1,9 +1,9 @@
 import { SearchCurrencyLatest } from "../models/SearchCurrencyLatest";
 import { CurrencyLatestService } from "../services/CurrencyLatestService";
-import { NotificationService } from "../services/NotificationService";
+import { CurrencyRateService } from "../services/CurrencyRateService";
 
 
-const notification = new NotificationService();
+const notification = new CurrencyRateService();
 
 export class CurrencyLatestController {
   private currencyLatestService: CurrencyLatestService;
@@ -25,7 +25,7 @@ export class CurrencyLatestController {
       res.json({ ExchangeRate });
 
       const message = `The exchange rate for ${currency} has been successfully retrivied.`;
-      notification.sendNotification(userId, message);
+      notification.PublishNotificationExchangeRateRequest(currency);
 
     } catch (error) {
       console.log(error)
