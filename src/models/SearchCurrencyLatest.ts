@@ -13,6 +13,6 @@ export class SearchCurrencyLatest implements CurrencyLatestRules {
 
     const data = await response.json();
     console.log(data);
-    return data.conversion_rates[currency];
+    return data.conversion_rates;
   }
 }
