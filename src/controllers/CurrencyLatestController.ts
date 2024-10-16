@@ -19,7 +19,7 @@ export class CurrencyLatestController {
       const ExchangeRate = await this.currencyLatestService.getExchangeRateLatest(currency);
 
       if (!ExchangeRate) {
-        console.log("rror fetching exchange rate")
+        console.log("Error fetching exchange rate")
         res.status(404).json({ "message": "Exchange rate not found" })
       };
       res.json({ ExchangeRate });
