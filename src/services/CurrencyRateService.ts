@@ -16,7 +16,7 @@ export class CurrencyRateService implements NotificationRules {
           return;
         };
 
-        const exchange = 'exchange_rate_request';
+        const exchange = 'exchange_rate_requests';
         channel.assertExchange(exchange, 'fannout', { durable: true }, (error) => {
           if (error) {
             console.log('Error asserting queue');
