@@ -1,31 +1,30 @@
 import { SearchCurrencyLatest } from "../models/SearchCurrencyLatest";
-import { CurrencyLatestService } from "../services/CurrencyLatestService";
 import { CurrencyRateService } from "../services/CurrencyRateService";
+import { CurrencyWorkersRateService } from "../services/CurrencyWorkersRateService";
 
 
 const notification = new CurrencyRateService();
 
 export class CurrencyLatestController {
-  private currencyLatestService: CurrencyLatestService;
+  private CurrencyWorkersRateService: CurrencyWorkersRateService;
 
   constructor() {
     const SearchExchangeRateLatest = new SearchCurrencyLatest();
-    this.currencyLatestService = new CurrencyLatestService(SearchExchangeRateLatest);
+    this.CurrencyWorkersRateService = new CurrencyWorkersRateService(SearchExchangeRateLatest);
   }
 
   async handleRequestHistory({ req, res }: any) {
     const { currency, userId } = req.body;
     try {
-      const ExchangeRate = await this.currencyLatestService.getExchangeRateLatest(currency);
+      notification.PublishNotificationExchangeRateRequest(currency);
+      const ExchangeRate = await this.CurrencyWorkersRateService.GetNotificationExchangeRate(); 
 
       if (!ExchangeRate) {
-        console.log("Error fetching exchange rate")
-        res.status(404).json({ "message": "Exchange rate not found" })
-      };
+        console.log("Error: nada retornado");
+        res.status(404).json({ message: "Taxa de câmbio não encontrada" });
+        return;
+      }
       res.json({ ExchangeRate });
-
-      const message = `The exchange rate for ${currency} has been successfully retrivied.`;
-      notification.PublishNotificationExchangeRateRequest(currency);
 
     } catch (error) {
       console.log(error)
