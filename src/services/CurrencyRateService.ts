@@ -1,6 +1,7 @@
 import type { NotificationRules } from "../interfaces/NotificationRules";
 import amqp from "amqplib/callback_api";
 
+
 export class CurrencyRateService implements NotificationRules {
   PublishNotificationExchangeRateRequest(currency: string): void {
     amqp.connect('amqp://localhost:5672', (error0, connection) => {
@@ -17,7 +18,7 @@ export class CurrencyRateService implements NotificationRules {
         };
 
         const exchange = 'exchange_rate_requests';
-        channel.assertExchange(exchange, 'fannout', { durable: true }, (error) => {
+        channel.assertExchange(exchange, 'fanout', { durable: true }, (error) => {
           if (error) {
             console.log('Error asserting queue');
             connection.close();
