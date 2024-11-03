@@ -9,7 +9,7 @@ export class SearchCurrencyHistory implements CurrencyHistoryRules {
     const response = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/history/${currency}/${year}/${month}/${day}`);
 
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data
   }
 }
