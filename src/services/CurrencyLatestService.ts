@@ -1,9 +1,9 @@
-// import { CurrencyLatestRules } from "../interfaces/CurrencyLatetsRules";
+import { CurrencyLatestRules } from "../interfaces/CurrencyLatestsRules";
 
-// export class CurrencyLatestService {
-//   constructor(private CurrencyLatestRules: CurrencyLatestRules) { }
+export class CurrencyLatestService {
+  constructor(private CurrencyLatestRules?: CurrencyLatestRules) { }
 
-//   async getExchangeRateLatest(currency: string) {
-//     return this.CurrencyLatestRules.ExchageRateLatest(currency);
-//   }
-// }
+  async getExchangeRateLatest(base_currency: string ) {
+    return this.CurrencyLatestRules?.ExchageRateLatest(base_currency);
+  }
+}
