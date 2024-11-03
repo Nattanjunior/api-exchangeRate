@@ -2,5 +2,5 @@ POST http://localhost:3000/ExchangeRateLatest
 Content-Type: application/json
 
 {
-	"currency":"BRL"
+	"base_currency":"USD"
 }
