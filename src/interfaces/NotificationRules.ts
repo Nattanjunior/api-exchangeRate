@@ -1,3 +1,3 @@
 export class NotificationRules {
-  PublishNotificationExchangeRateRequest(userId: string, message: string): void { }
+  PublishNotificationExchangeRateRequest(base_currency: string): void { }
 }
