@@ -1,4 +1,6 @@
 import { SearchCurrencyLatest } from "../models/SearchCurrencyLatest";
+import { CurrencyLatestService } from "../services/CurrencyLatestService";
+
 import { CurrencyRateService } from "../services/CurrencyRateService";
 import { CurrencyWorkersRateService } from "../services/CurrencyWorkersRateService";
 
@@ -6,18 +8,16 @@ import { CurrencyWorkersRateService } from "../services/CurrencyWorkersRateServi
 const notification = new CurrencyRateService();
 
 export class CurrencyLatestController {
-  private CurrencyWorkersRateService: CurrencyWorkersRateService;
-
-  constructor() {
-    const SearchExchangeRateLatest = new SearchCurrencyLatest();
-    this.CurrencyWorkersRateService = new CurrencyWorkersRateService(SearchExchangeRateLatest);
+  private CurrencyWorkersRateService: CurrencyWorkersRateService
+  constructor(){
+    this.CurrencyWorkersRateService = new CurrencyWorkersRateService()
   }
 
   async handleRequestHistory({ req, res }: any) {
-    const { currency, userId } = req.body;
+    const { base_currency } = req.body;
     try {
-      notification.PublishNotificationExchangeRateRequest(currency);
-      const ExchangeRate = await this.CurrencyWorkersRateService.GetNotificationExchangeRate(); 
+      await notification.PublishNotificationExchangeRateRequest(base_currency);  
+      const ExchangeRate = await this.CurrencyWorkersRateService.GetNotificationExchangeRate();
 
       if (!ExchangeRate) {
         console.log("Error: nada retornado");
