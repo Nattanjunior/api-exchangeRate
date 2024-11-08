@@ -10,9 +10,9 @@ export class CurrencyHistoryController {
   }
 
   async handleRequestHistory({ req, res }: any) {
-    const { currency, year, month, day } = req.body;
+    const { date } = req.body;
     try {
-      const ExchangeRate = await this.currencyHistoryService.getExchangeRateHistory({ currency, year, month, day })
+      const ExchangeRate = await this.currencyHistoryService.getExchangeRateHistory({date})
       res.json({ ExchangeRate })
     } catch (error) {
       console.log(error)
