@@ -1,10 +1,7 @@
 export interface CurrencyHistoryProps {
-  currency: string;
-  year: number;
-  month: number;
-  day: number;
+  date: string
 }
 
 export interface CurrencyHistoryRules {
-  ExchageRateHistory({ currency, year, month, day }: CurrencyHistoryProps): Promise<number>;
+  ExchageRateHistory({ date}: CurrencyHistoryProps): Promise<object>;
 }
