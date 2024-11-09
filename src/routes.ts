@@ -1,4 +1,5 @@
 import express from "express";
+
 import { CurrencyHistoryController } from "./controllers/CurrencyHistoryController";
 import { CurrencyLatestController } from "./controllers/CurrencyLatestController";
 
