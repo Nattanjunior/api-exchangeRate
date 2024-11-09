@@ -1,5 +1,8 @@
 import type { CurrencyLatestRules } from "../interfaces/CurrencyLatestsRules";
-import { apiKey } from "./SearchCurrencyHistory";
+// import { apiKey } from "./SearchCurrencyHistory";
+
+const apiKey = process.env.API_KEY;
+console.log(apiKey)
 
 
 export class SearchCurrencyLatest implements CurrencyLatestRules {
@@ -11,7 +14,7 @@ export class SearchCurrencyLatest implements CurrencyLatestRules {
       throw new Error(`Error fetching exchange rate: ${response.statusText}`)
     }
     const data = await response.json();
-    // console.log(data);
+    // console.log(typeof data);
     return data.conversion_rates;
   }
 }
